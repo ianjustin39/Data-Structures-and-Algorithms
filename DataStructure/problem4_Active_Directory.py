@@ -51,3 +51,8 @@ parent.add_group(child)
 
 print("Test case 1: ", bool(is_user_in_group(sub_child_user, parent)))
 print("Test case 2: ", bool(is_user_in_group('Lisa', parent)))
+
+
+new_parent = Group("parent")
+print("Test case 3: ", bool(is_user_in_group(sub_child_user, new_parent)))
+print("Test case 4: ", bool(is_user_in_group('Tom', new_parent)))

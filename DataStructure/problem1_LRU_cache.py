@@ -37,12 +37,6 @@ class Queue:
     def is_empty(self):
         return self.size() == 0
 
-    def front(self):
-        # check if queue is empty
-        if self.is_empty():
-            return None
-        return self.arr[self.front_index]
-
     def _handle_queue_capacity_full(self):
         old_arr = self.arr
         self.arr = [0 for _ in range(2 * len(old_arr))]
@@ -80,6 +74,9 @@ class LRU_Cache(object):
         return -1
 
     def set(self, key, value):
+        if not self.q.size() < 0:
+            print("capacity can not < 0")
+            return
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item.
         if self.q.size() < 5:
             self.q.enqueue((key, value))
@@ -106,5 +103,14 @@ print("Test case 3: ", our_cache.get(9) == -1)      # returns -1 because 9 is no
 
 our_cache.set(5, 5)
 our_cache.set(6, 6)
+our_cache.set(6, 6)
 
 print("Test case 4: ", our_cache.get(3) == -1)      # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
+
+our_cache = LRU_Cache(0)
+our_cache.set(1, 1)
+our_cache.set(2, 2)
+
+our_cache = LRU_Cache(-1)
+our_cache.set(1, 1)
+our_cache.set(2, 2)

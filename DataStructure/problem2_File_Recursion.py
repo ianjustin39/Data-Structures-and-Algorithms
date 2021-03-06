@@ -35,6 +35,10 @@ def find_files(suffix, path):
     Returns:
        a list of paths
     """
+    is_exist = os.path.isdir(path)
+    if not is_exist:
+        print("dir is not exist")
+        return []
     file_name_list = os.listdir(path)
     for file_name in file_name_list:
         full_path = path + '/' + file_name
@@ -42,8 +46,21 @@ def find_files(suffix, path):
             output.append(full_path)
         elif os.path.isdir(full_path):
             output + find_files(suffix, full_path)
-
     return output
 
 
+print('--- Test case 1 : search .c---')
 print(find_files('.c', './testdir'))
+output.clear()
+
+print('--- Test case 2 : search .py---')
+print(find_files('.py', '.'))
+output.clear()
+
+print('--- Test case 3 : ---')
+print(find_files('.py', './testdir2'))
+output.clear()
+
+print('--- Test case 4 : ---')
+print(find_files('.txt', './testdir'))
+

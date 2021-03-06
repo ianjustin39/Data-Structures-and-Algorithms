@@ -29,8 +29,7 @@ class BlockChain:
         self.first_block = None
         self.last_block = None
 
-    def append(self, value):
-        print()
+    def append(self, value=None):
         if self.first_block is None:
             self.first_block = Node(self.create_genesis_block(value))
             self.last_block = self.first_block
@@ -44,7 +43,7 @@ class BlockChain:
 
     def next_block(self, previous_hash, value):
         this_timestamp = datetime.now()
-        this_data = "Hey! I'm block {}".format(value)
+        this_data = "" if not value else "Hey! I'm block {}".format(value)
         this_hash = previous_hash
         return Block(this_timestamp, this_data, this_hash)
 
@@ -52,6 +51,8 @@ class BlockChain:
         return self.last_block
 
 
+# Test case 1
+print('---Test case 1---')
 chain = BlockChain()
 chain.append('111')
 chain.append('222')
@@ -64,6 +65,27 @@ chain.append('888')
 chain.append('999')
 
 last_block = chain.get_last_block()
+while(last_block):
+    print(last_block.block.data)
+    last_block = last_block.previous
+
+# Test case 2
+print('---Test case 2---')
+chain = BlockChain()
+chain.append('111')
+chain.append('999')
+
+last_block = chain.get_last_block()
+while(last_block):
+    print(last_block.block.data)
+    last_block = last_block.previous
+
+# Test case 3
+print('---Test case 3---')
+chain = BlockChain()
+chain.append('111')
+chain.append()
+
 while(last_block):
     print(last_block.block.data)
     last_block = last_block.previous
