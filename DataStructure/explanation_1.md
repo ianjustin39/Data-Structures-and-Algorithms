@@ -4,8 +4,8 @@ Queue: because data length max is 5. and I didn't call get function , always put
         and if get data, the data should put on top in queue.
 Map: I get data need key-value pairs.
 
-time: O(n)
-space: O(2n)
+time: O(1)
+space: O(n)
 
 ---
 
@@ -26,7 +26,7 @@ List: because I can sort list and use for loop to get data.
 Tree: because data
 
 time: O（n log n）
-space: O（log n）
+space: O（n）
 ---
 
 problem 4 
